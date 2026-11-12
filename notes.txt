@@ -1,0 +1,66 @@
+TECHY - IDENTIDAD DE MARCA Y ESTILOS
+Fuente: https://github.com/angelmc-12/techy-web-dev (app/globals.css, app/layout.tsx, components/)
+
+=== MARCA ===
+Nombre: Techy
+Descripcion: comunidad educativa / emprendimiento social que forma a jovenes en datos y
+tecnologia (Data Science, habilidades blandas) con proyectos reales, mentoria y
+acompanamiento profesional. Ubicacion: Lima, Peru. Idioma: espanol (es_PE).
+Programas: Techy Women, Techy Winter Lab.
+Titulo: "Techy - Formacion en datos y tecnologia con acompanamiento real"
+Tono: elegante, oscuro (dark-first), tecnologico, cercano y editorial.
+
+=== LOGOS / IMAGENES (descargados en ./assets) ===
+assets/logo.svg      Logo principal horizontal. Usa verde #59f4b2 y blanco #ffffff.
+                     Pensado para fondo oscuro. En navbar: altura 40px (h-10), ancho auto.
+assets/icon.svg      Icono cuadrado 180x180: fondo #1a1a1a (rx 40) + letra "T" en #59f4b2.
+assets/apple-icon.png  Icono para iOS.
+assets/og-image.jpg  Imagen Open Graph 1200x630.
+(Otros en el repo: public/icon-dark-32x32.png, icon-light-32x32.png)
+
+=== COLORES ===
+Fondo base (--background)        #070A09   oklch(0.04 0.01 260)
+Superficie primaria (cards)      #0C110F   oklch(0.08 0.02 260)
+Superficie secundaria / input    #121A16   oklch(0.10 0.02 260)
+Texto (--foreground)             casi blanco  oklch(0.98 0.01 260)
+Texto atenuado (muted)           gris   oklch(0.65 0.01 260)
+Borde                            oklch(0.14 0.02 260)  (sutil, oscuro)
+ACENTO / PRIMARIO (verde vivo)   #3AEFB5   oklch(0.82 0.25 155)   <- theme-color del sitio
+Verde del logo                   #59f4b2
+Verde atenuado                   oklch(0.48 0.12 155)
+Destructivo                      oklch(0.577 0.245 27.325)
+Texto sobre acento               fondo oscuro (#070A09)
+Graficos: chart-1 verde acento; chart-2 azul frio oklch(0.65 0.15 260);
+          chart-3 calido oklch(0.70 0.12 50); chart-4 oklch(0.55 0.10 260);
+          chart-5 oklch(0.60 0.08 260)
+
+=== TIPOGRAFIA ===
+Sans: Inter (fallback Geist, system-ui, sans-serif)
+Mono: Geist Mono
+Escala (responsive con clamp):
+  display-lg  2.5rem-4rem,    bold 700, tracking -0.02em, line-height 1.1
+  display-md  2rem-3rem,      bold 700, tracking -0.02em, line-height 1.1
+  display-sm  1.5rem-2rem,    bold 700, tracking -0.02em, line-height 1.25
+  heading-lg  1.75rem-2rem,   bold 700, lh 1.3
+  heading-md  1.25rem-1.5rem, semibold 600, lh 1.3
+  heading-sm  1rem-1.25rem,   semibold 600, lh 1.5
+  body-lg 1-1.125rem | body-md 0.95-1rem | body-sm 0.875-0.9375rem, lh 1.6
+Eyebrow (sobretitulo): text-xs, semibold, MAYUSCULAS, tracking-widest, color verde acento.
+
+=== FORMAS Y ESPACIADO ===
+Radios: botones/elementos pequenos 10px (0.625rem); cards/paneles 16px (1rem);
+        paneles grandes 20px (1.25rem); sm 0.5rem; xl 1.5rem.
+Secciones: padding vertical py-24 desktop, py-20 tablet, py-16 movil.
+Contenedor centrado con px-4.
+
+=== COMPONENTES ===
+Boton primario: fondo verde #3AEFB5, texto oscuro, hover 90% opacidad, rounded-md.
+  Variantes: outline, secondary (superficie secundaria), ghost, destructive.
+  Tamanos: sm h-8, default, lg h-10 px-6, xl h-12 px-8 text-base.
+Cards / content-surface: fondo superficie secundaria + borde sutil + radio grande.
+Links editoriales: verde acento, hover verde/80, transicion 200ms.
+Navbar: sticky, h-16, fondo background/95 con backdrop-blur, borde inferior border/40.
+Foco: anillo verde (ring = acento).
+
+=== STACK DE REFERENCIA ===
+Next.js (App Router), TypeScript, Tailwind CSS v4, shadcn/ui, lucide-react, Framer Motion.
