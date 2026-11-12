@@ -71,7 +71,22 @@ body {
   padding: 6px 10px; border-radius: 8px; white-space: nowrap; transition: color .2s, background .2s;
 }
 .nav-links a:hover { color: var(--foreground); background: var(--surface-secondary); }
-@media (max-width: 720px) { .nav-links { display: none; } }
+.nav-links a.active { color: var(--accent-green); background: rgba(58,239,181,.08); }
+section.block { scroll-margin-top: 76px; }
+@media (max-width: 720px) {
+  .nav .container { height: 56px; gap: 10px; padding-right: 0; }
+  .nav img { height: 32px; flex-shrink: 0; }
+  .nav-links {
+    flex: 1; min-width: 0; padding-right: 16px; scroll-snap-type: x proximity;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 14px, #000 calc(100% - 28px), transparent);
+            mask-image: linear-gradient(90deg, transparent 0, #000 14px, #000 calc(100% - 28px), transparent);
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-links a { padding: 6px 10px; font-size: 12.5px; scroll-snap-align: start; border: 1px solid var(--border); border-radius: 999px; }
+  .nav-links a:first-child { margin-left: 10px; }
+  .nav-links a.active { border-color: rgba(58,239,181,.4); }
+  section.block { scroll-margin-top: 64px; }
+}
 
 /* Hero */
 .hero { padding: 56px 0 32px; position: relative; overflow: hidden; }
@@ -244,6 +259,111 @@ footer { border-top: 1px solid var(--border); margin-top: 56px; padding: 24px 0 
 footer .container { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; }
 footer img { height: 28px; opacity: .85; }
 
+/* Ficha: texto del nombre de métrica */
+td.mname { font-weight: 500; }
+.tabs { flex-wrap: wrap; }
+.map-lbl-n { font-size: 12px; font-weight: 700; font-family: Inter, sans-serif; }
+.map-lbl-s { font-size: 9.5px; font-family: Inter, sans-serif; }
+.more-btn { display: none; }
+.hint-touch { display: none; }
+
+/* ================= MOBILE ================= */
+@media (max-width: 640px) {
+  body { font-size: 14px; overflow-x: clip; }
+  .hero { padding: 28px 0 20px; }
+  .hero::before { width: 360px; height: 360px; inset: -20% -30% auto auto; }
+  h1 { font-size: 1.9rem; }
+  h1 br { display: none; }
+  h1 .hl { display: block; margin-top: 4px; }
+  .lede { font-size: 15px; }
+  .hero-meta { gap: 6px; margin-top: 16px; }
+  .chip { font-size: 11.5px; padding: 4px 9px; }
+
+  /* KPIs: destacado ancho completo + 2x2 */
+  .kpis { gap: 10px; }
+  .kpi { padding: 14px; border-radius: 14px; }
+  .kpi.feature { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 12px; }
+  .kpi.feature .label { grid-column: 1; }
+  .kpi.feature .foot { grid-column: 1; grid-row: 2; }
+  .kpi.feature .value { grid-column: 2; grid-row: 1 / span 2; font-size: 2.6rem; margin: 0; }
+  .kpi .label { font-size: 12px; line-height: 1.35; min-height: 2.7em; }
+  .kpi.feature .label { min-height: 0; }
+  .kpi .value { font-size: 1.85rem; }
+  .kpi .foot { font-size: 11px; line-height: 1.35; }
+
+  section.block { padding: 36px 0 4px; }
+  .sec-head { margin-bottom: 14px; }
+  h2 { font-size: 1.45rem; }
+  .sec-head p { font-size: 13.5px; }
+  .grid { gap: 12px; }
+  .card { padding: 16px; border-radius: 16px; }
+  .card .sub { font-size: 12.5px; margin-bottom: 12px; }
+  .metric { gap: 8px; }
+  .metric .big { font-size: 2.3rem; }
+
+  /* Barras horizontales: nombre + valor arriba, barra a todo el ancho */
+  .hbars { gap: 12px; }
+  .hbar { grid-template-columns: 1fr auto; gap: 5px 10px; }
+  .hbar .name { grid-column: 1; white-space: normal; line-height: 1.3; }
+  .hbar .num { grid-column: 2; grid-row: 1; }
+  .hbar .bar { grid-column: 1 / -1; height: 8px; background: var(--surface-secondary); border-radius: 4px; }
+  .hbars.collapsed .hbar:nth-child(n+7) { display: none; }
+  .more-btn {
+    display: block; width: 100%; margin-top: 12px; font: inherit; font-size: 13px; font-weight: 500;
+    color: var(--accent-green); background: var(--surface-secondary); border: 1px solid var(--border);
+    border-radius: 10px; padding: 9px; cursor: pointer;
+  }
+
+  /* Mapa */
+  #peru-map { max-height: 440px; }
+  .map-lbl-n { font-size: 16px; }
+  .map-lbl-s { font-size: 12.5px; }
+  .seq-legend .steps span, .seq-legend .ticks span { width: 40px; }
+
+  /* Anillos */
+  .ring svg { max-width: 118px; }
+  .ring .lbl { font-size: 12.5px; }
+
+  /* Flujo multiplicador como lista compacta */
+  .flow { gap: 0; }
+  .flow .step { display: grid; grid-template-columns: 84px 1fr; align-items: center; gap: 12px; padding: 12px 14px; }
+  .flow .step .n { font-size: 1.7rem; }
+  .flow .step .t { font-size: 12.5px; line-height: 1.4; }
+  .flow .arrow { height: 22px; }
+  .flow .arrow svg { width: 16px; height: 16px; }
+  .waffle { gap: 3px; }
+
+  /* Tabs con scroll horizontal */
+  #ficha .sec-head { display: block; }
+  .tabs { display: flex; flex-wrap: nowrap; overflow-x: auto; max-width: 100%; margin-top: 14px; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tabs button { white-space: nowrap; flex-shrink: 0; }
+
+  /* Ficha técnica como tarjetas */
+  .table-wrap { border: 0; overflow: visible; }
+  table { min-width: 0; }
+  thead { display: none; }
+  table, tbody, tr, td { display: block; }
+  tbody { display: flex; flex-direction: column; gap: 10px; }
+  tr {
+    display: grid; grid-template-columns: 1fr auto; gap: 4px 14px;
+    background: var(--surface-primary); border: 1px solid var(--border); border-radius: 14px; padding: 14px;
+  }
+  td { padding: 0; border: 0; }
+  tbody tr:hover td { background: none; }
+  td.dim-cell { grid-column: 1 / -1; font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; }
+  td.mname { grid-column: 1; font-weight: 600; font-size: 14px; line-height: 1.35; }
+  td.val { grid-column: 2; grid-row: 2 / span 2; font-size: 1.5rem; line-height: 1.1; color: var(--accent-green); text-align: right; }
+  td.frac { grid-column: 1; white-space: normal; }
+  td.formula { grid-column: 1 / -1; font-size: 12.5px; line-height: 1.45; margin-top: 6px; padding-top: 8px; border-top: 1px dashed var(--border); }
+  footer { margin-top: 36px; }
+  footer .container { flex-direction: column; align-items: flex-start; }
+}
+@media (hover: none) {
+  .hint-hover { display: none; }
+  .hint-touch { display: inline; }
+}
+
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
@@ -295,7 +415,7 @@ footer img { height: 28px; opacity: .85; }
     <div class="grid g-map">
       <div class="card">
         <h3>Participantes por región de procedencia</h3>
-        <p class="sub"><span id="n-regiones"></span> de 25 regiones representadas · pasa el cursor sobre el mapa</p>
+        <p class="sub"><span id="n-regiones"></span> de 25 regiones representadas · <span class="hint-hover">pasa el cursor sobre el mapa</span><span class="hint-touch">toca una región para ver el detalle</span></p>
         <div class="map-wrap">
           <svg id="peru-map" role="img" aria-label="Mapa del Perú con participantes por región"></svg>
         </div>
@@ -365,7 +485,7 @@ footer img { height: 28px; opacity: .85; }
       <div class="card">
         <h3>Trayectoria de empleabilidad</h3>
         <p class="sub">% de egresados con empleo en cada punto de seguimiento</p>
-        <svg class="chart" id="line-empleo" viewBox="0 0 640 280" role="img" aria-label="Línea de % de egresados empleados en el tiempo"></svg>
+        <svg class="chart" id="line-empleo" role="img" aria-label="Línea de % de egresados empleados en el tiempo"></svg>
       </div>
       <div class="grid" style="align-content:start">
         <div class="card">
@@ -409,7 +529,7 @@ footer img { height: 28px; opacity: .85; }
           <span><span class="sw" style="background:var(--cat-1)"></span>Retornan del ciclo anterior</span>
           <span><span class="sw" style="background:var(--cat-2)"></span>Nuevos</span>
         </div>
-        <svg class="chart" id="bars-mentores" viewBox="0 0 640 280" role="img" aria-label="Columnas apiladas de mentores por ciclo"></svg>
+        <svg class="chart" id="bars-mentores" role="img" aria-label="Columnas apiladas de mentores por ciclo"></svg>
       </div>
       <div class="grid" style="align-content:start">
         <div class="card">
@@ -603,11 +723,21 @@ function showTip(e, html) {
   tip.innerHTML = html; tip.style.opacity = 1;
   const pad = 14, r = tip.getBoundingClientRect();
   let x = e.clientX + pad, y = e.clientY + pad;
-  if (x + r.width > innerWidth - 8) x = e.clientX - r.width - pad;
-  if (y + r.height > innerHeight - 8) y = e.clientY - r.height - pad;
-  tip.style.left = Math.max(8, x) + "px"; tip.style.top = Math.max(8, y) + "px";
+  if (IS_TOUCH) {           // en táctil: centrado y por encima del dedo
+    x = e.clientX - r.width / 2; y = e.clientY - r.height - 28;
+    if (y < 64) y = e.clientY + 28;
+  } else {
+    if (x + r.width > innerWidth - 8) x = e.clientX - r.width - pad;
+    if (y + r.height > innerHeight - 8) y = e.clientY - r.height - pad;
+  }
+  x = Math.min(Math.max(8, x), innerWidth - r.width - 8);
+  tip.style.left = x + "px"; tip.style.top = Math.max(8, y) + "px";
 }
 function hideTip() { tip.style.opacity = 0; }
+const IS_TOUCH = matchMedia("(hover: none)").matches;
+const IS_NARROW = () => innerWidth <= 640;
+addEventListener("scroll", hideTip, { passive: true });
+document.addEventListener("touchstart", e => { if (!e.target.closest(".hbar, #peru-map, svg.chart, .waffle")) hideTip(); }, { passive: true });
 const row = (k, v, sw) => `<div class="row"><span>${sw ? `<span class="sw" style="background:${sw}"></span>` : ""}${k}</span><b>${v}</b></div>`;
 
 /* ---------- KPIs ---------- */
@@ -635,6 +765,18 @@ function hbars(el, rows, opts = {}) {
       <span class="bar"><i class="${other ? "other" : ""}" data-w="${w}" ${color ? `style="background:var(${color})"` : ""}></i></span>
       <span class="num">${fmt(v)}</span></div>`;
   }).join("");
+  if (opts.collapse && rows.length > opts.collapse) {
+    el.classList.add("collapsed");
+    const btn = document.createElement("button");
+    btn.className = "more-btn"; btn.type = "button";
+    const label = () => el.classList.contains("collapsed") ? `Ver las ${rows.length} regiones` : "Ver menos";
+    btn.textContent = label();
+    btn.addEventListener("click", () => {
+      el.classList.toggle("collapsed"); btn.textContent = label();
+      el.querySelectorAll("[data-w]").forEach(b => b.style.width = b.dataset.w + "%");
+    });
+    el.after(btn);
+  }
   el.querySelectorAll(".hbar").forEach(b => {
     const h = e => {
       const v = +b.dataset.v;
@@ -644,7 +786,7 @@ function hbars(el, rows, opts = {}) {
     b.addEventListener("mousemove", h); b.addEventListener("mouseleave", hideTip);
   });
 }
-hbars(document.getElementById("bars-regiones"), DATA.regiones.filter(r => r[0] !== "LIMA").map(r => [r[1], r[2]]), { total: 180 });
+hbars(document.getElementById("bars-regiones"), DATA.regiones.filter(r => r[0] !== "LIMA").map(r => [r[1], r[2]]), { total: 180, collapse: 6 });
 hbars(document.getElementById("bars-unis"), DATA.universidades, { total: 600 });
 hbars(document.getElementById("bars-carreras"), DATA.carreras, { total: 600 });
 hbars(document.getElementById("bars-alumni"), DATA.alumni, { unit: "Alumni", total: 320 });
@@ -688,11 +830,11 @@ hbars(document.getElementById("bars-iniciativas"), DATA.iniciativas.map(r => [r[
   geo.features.filter(f => top.includes(f.properties.departamento)).forEach(f => {
     const [x, y] = path.centroid(f); const r = byDep.get(f.properties.departamento);
     const g = svg.append("g").attr("pointer-events", "none");
-    g.append("text").attr("x", x).attr("y", y - 2).attr("text-anchor", "middle")
-      .attr("fill", r.v > 100 ? "#070A09" : "#F5F7F6").attr("font-size", 12).attr("font-weight", 700)
-      .attr("font-family", "Inter, sans-serif").text(fmt(r.v));
-    g.append("text").attr("x", x).attr("y", y + 11).attr("text-anchor", "middle")
-      .attr("fill", r.v > 100 ? "#070A09" : "#C9D1CD").attr("font-size", 9.5).attr("font-family", "Inter, sans-serif").text(r.name);
+    const small = IS_NARROW();
+    g.append("text").attr("class", "map-lbl-n").attr("x", x).attr("y", y - 2).attr("text-anchor", "middle")
+      .attr("fill", r.v > 100 ? "#070A09" : "#F5F7F6").text(fmt(r.v));
+    g.append("text").attr("class", "map-lbl-s").attr("x", x).attr("y", y + (small ? 14 : 11)).attr("text-anchor", "middle")
+      .attr("fill", r.v > 100 ? "#070A09" : "#C9D1CD").text(r.name);
   });
 
   document.getElementById("seq-steps").innerHTML = [zeroColor, ...seq].map(c => `<span style="background:${c}"></span>`).join("");
@@ -714,9 +856,20 @@ document.getElementById("empleo-cards").innerHTML = DATA.empleo.map((m, i) => `
   </div>`).join("");
 
 /* ---------- Línea: trayectoria de empleabilidad ---------- */
-(function line() {
+/* Los gráficos SVG se dibujan al ancho real del contenedor (texto siempre legible) */
+function chartSize(svg, hDesk, hMob) {
+  const W = Math.round(svg.node().getBoundingClientRect().width) || 600;
+  const H = W < 480 ? hMob : hDesk;
+  svg.selectAll("*").remove();
+  svg.attr("viewBox", `0 0 ${W} ${H}`);
+  return [W, H, W < 480];
+}
+let lineDrawn = false;
+function drawLine() {
   const svg = d3.select("#line-empleo");
-  const W = 640, H = 280, m = { t: 24, r: 28, b: 34, l: 40 };
+  const [W, H, narrow] = chartSize(svg, 280, 240);
+  const m = { t: 26, r: narrow ? 18 : 28, b: 34, l: narrow ? 36 : 40 };
+  const SHORT = { "Inicio": "Inicio", "Fin del programa": "Fin", "3 meses": "3 m", "6 meses": "6 m", "12 meses": "12 m" };
   const data = DATA.trayectoria;
   const x = d3.scalePoint().domain(data.map(d => d[0])).range([m.l, W - m.r]).padding(0.1);
   const y = d3.scaleLinear().domain([0, 100]).range([H - m.b, m.t]);
@@ -727,7 +880,7 @@ document.getElementById("empleo-cards").innerHTML = DATA.empleo.map((m, i) => `
     g.append("line").attr("x1", m.l).attr("x2", W - m.r).attr("y1", y(v)).attr("y2", y(v));
     svg.append("text").attr("class", "axis").attr("x", m.l - 8).attr("y", y(v) + 4).attr("text-anchor", "end").text(v + "%");
   });
-  data.forEach(d => svg.append("text").attr("class", "axis").attr("x", x(d[0])).attr("y", H - 10).attr("text-anchor", "middle").text(d[0]));
+  data.forEach(d => svg.append("text").attr("class", "axis").attr("x", x(d[0])).attr("y", H - 10).attr("text-anchor", "middle").text(narrow ? SHORT[d[0]] : d[0]));
 
   const defs = svg.append("defs");
   const grad = defs.append("linearGradient").attr("id", "ga").attr("x1", 0).attr("x2", 0).attr("y1", 0).attr("y2", 1);
@@ -739,7 +892,7 @@ document.getElementById("empleo-cards").innerHTML = DATA.empleo.map((m, i) => `
   const ln = svg.append("path").datum(data).attr("fill", "none").attr("stroke", green).attr("stroke-width", 2)
     .attr("d", d3.line().x(d => x(d[0])).y(d => y(d[1])).curve(d3.curveMonotoneX));
   const L = ln.node().getTotalLength();
-  ln.attr("stroke-dasharray", L).attr("stroke-dashoffset", L).transition().duration(1400).attr("stroke-dashoffset", 0);
+  if (!lineDrawn) { ln.attr("stroke-dasharray", L).attr("stroke-dashoffset", L).transition().duration(1400).attr("stroke-dashoffset", 0); lineDrawn = true; }
 
   svg.selectAll("circle.pt").data(data).join("circle").attr("class", "pt")
     .attr("cx", d => x(d[0])).attr("cy", d => y(d[1])).attr("r", 4)
@@ -761,14 +914,15 @@ document.getElementById("empleo-cards").innerHTML = DATA.empleo.map((m, i) => `
       showTip(e, `<div class="tt">${d[0]}</div>` + row("Egresados empleados", d[1] + "%", green));
     })
     .on("mouseleave", () => { cross.attr("opacity", 0); focus.attr("opacity", 0); hideTip(); });
-})();
+}
 
 /* ---------- Columnas apiladas: mentores ---------- */
-(function mentores() {
+function drawMentores() {
   const svg = d3.select("#bars-mentores");
-  const W = 640, H = 280, m = { t: 26, r: 12, b: 34, l: 40 };
+  const [W, H, narrow] = chartSize(svg, 280, 250);
+  const m = { t: 26, r: 8, b: 34, l: narrow ? 32 : 40 };
   const data = DATA.mentores.map(([c, r, n]) => ({ c, r, n, t: r + n }));
-  const x = d3.scaleBand().domain(data.map(d => d.c)).range([m.l, W - m.r]).padding(0.45);
+  const x = d3.scaleBand().domain(data.map(d => d.c)).range([m.l, W - m.r]).padding(narrow ? 0.32 : 0.45);
   const y = d3.scaleLinear().domain([0, 150]).range([H - m.b, m.t]);
   const c1 = css("--cat-1"), c2 = css("--cat-2"), surf = css("--surface-primary");
   const g = svg.append("g").attr("class", "grid");
@@ -801,7 +955,14 @@ document.getElementById("empleo-cards").innerHTML = DATA.empleo.map((m, i) => `
   const last = data[data.length - 1];
   svg.append("text").attr("class", "lbl-muted").attr("x", x(last.c) + x.bandwidth() / 2).attr("y", y(last.r / 2) + 4)
     .attr("text-anchor", "middle").attr("fill", "#04130D").style("fill", "#04130D").attr("font-weight", 600).text("70%");
-})();
+}
+drawLine(); drawMentores();
+let lastW = innerWidth, rT;
+addEventListener("resize", () => {
+  if (innerWidth === lastW) return;   // ignora el cambio de alto por la barra del navegador móvil
+  lastW = innerWidth; clearTimeout(rT);
+  rT = setTimeout(() => { drawLine(); drawMentores(); }, 150);
+});
 
 /* ---------- Anillos: capacitación continua ---------- */
 document.getElementById("rings").innerHTML = DATA.capacitacion.map(c => {
@@ -858,11 +1019,10 @@ const FICHA = [
   const tabs = document.getElementById("dim-tabs");
   const short = { "Movilidad profesional": "Movilidad", "Capacitación continua": "Capacitación", "Efecto multiplicador": "Multiplicador" };
   tabs.innerHTML = dims.map((d, i) => `<button role="tab" aria-selected="${i === 0}" data-d="${d}">${short[d] || d}</button>`).join("");
-  tabs.style.flexWrap = "wrap";
   const body = document.getElementById("ficha-body");
   const render = d => {
     body.innerHTML = FICHA.filter(f => d === "Todas" || f[0] === d).map(f =>
-      `<tr><td class="dim-cell">${f[0]}</td><td>${f[1]}</td><td class="formula">${f[2]}</td><td class="frac">${f[3]}</td><td class="val">${f[4]}</td></tr>`).join("");
+      `<tr><td class="dim-cell">${f[0]}</td><td class="mname">${f[1]}</td><td class="formula">${f[2]}</td><td class="frac">${f[3]}</td><td class="val">${f[4]}</td></tr>`).join("");
   };
   tabs.addEventListener("click", e => {
     const b = e.target.closest("button"); if (!b) return;
@@ -881,6 +1041,20 @@ const io = new IntersectionObserver(entries => entries.forEach(en => {
   io.unobserve(en.target);
 }), { threshold: 0.15 });
 document.querySelectorAll(".card, .grid").forEach(c => io.observe(c));
+
+/* ---------- Navegación: resalta la sección visible ---------- */
+(function activeNav() {
+  const links = [...document.querySelectorAll(".nav-links a")];
+  const nav = document.querySelector(".nav-links");
+  const set = id => links.forEach(a => {
+    const on = a.getAttribute("href") === "#" + id;
+    a.classList.toggle("active", on);
+    if (on && IS_NARROW()) nav.scrollTo({ left: a.offsetLeft - 10, behavior: "smooth" });
+  });
+  const so = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && set(e.target.id)),
+    { rootMargin: "-45% 0px -50% 0px" });
+  document.querySelectorAll("section.block").forEach(s => so.observe(s));
+})();
 </script>
 </body>
 </html>
